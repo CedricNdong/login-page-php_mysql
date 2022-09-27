@@ -1,11 +1,24 @@
+<?php
+ session_start();
+
+
+   
+
+    include(connection.php);
+    include(functions.php);
+    $user_data = check_login($con);
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SignUp-Login Form</title>
+    <title>SignUp Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-  
+    <link rel="stylesheet" href="style.css">
 </head>
 <body> 
     <div class="container">
@@ -13,11 +26,16 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="myLeftCtn"> 
-                        <form class="myForm text-center">
+                        <form class="myForm text-center" method ="post">
                             <header>Neues Konto erstellen</header>
                             <div class="form-group">
                                 <i class="fas fa-user"></i>
                                 <input class="myInput" type="text" placeholder="Username" id="username" required> 
+                            </div>
+
+                            <div class="form-group">
+                                <i class="fas fa-user"></i>
+                                <input class="myInput" type="text" placeholder="Name" id="name" required> 
                             </div>
 
                             <div class="form-group">
@@ -42,6 +60,18 @@
                         </form>
                     </div>
                 </div> 
+                <div class="col-md-6">
+                    <div class="myRightCtn">
+                            <div class="box"><header>Hello World!</header>
+                            
+                            <p>Ich bin Cedric Ndong, ein junger Student, 
+                                der sich für Informatik 
+                                und Softwareentwicklung begeistert.</p>
+                                <a href="cedricOnlineCV.html"><input type="button" class="butt_out" value="Mehr Über mein Portfolio"/></a>
+                            </div>
+                                
+                    </div>
+                </div>
             </div>
         </div>
 </div>
