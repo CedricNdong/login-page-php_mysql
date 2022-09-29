@@ -4,31 +4,39 @@
     include("connection.php");
     include("functions.php");
 
-    if ( $_SERVER['REQUEST_METHOD'] == "POST") {
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
         
-        // to post login daten
-        $user_name = $_POST['username'];
-        $name = $_POST['name'];
+        // to get login daten
+        $username = $_POST['username'];
         $password = $_POST['password'];
 
-        if (!empty(user_name) && !empty(password) && !is_numeric($name)) {
+        if (!empty($username) && !empty($password) && !is_numeric($username)) {
           
             //read from the database
-            $query = "select from * from users where username = '$username' limit 1";
+            $query = "select * from users where username = '$username' limit 1";
             $result = mysqli_query($con,$query);
-            $query = "insert into users (user_name,name,password) values ('$user_name','$name','$password')";
 
+            echo " 'hors du result'  $query";
+            
             if($result){
+
+                echo " in result";
                 if($result && mysqli_num_rows($result) > 0 ){
 
                     $user_data = mysqli_fetch_assoc($result);
 
+                    
+                    echo " in password";
+
+                   
+
                     if($user_data['password']=== $password){
 
+                        
 
-                        $_SESSION['user_name'] = $user_data['username'];
+                        $_SESSION['username'] = $user_data['username'];
 
-                        header("Location : index.php");
+                        header("Location: index.php");
                         die;
                     }
                  }
@@ -62,23 +70,18 @@
                 <div class="col-md-6">
                     <div class="myLeftCtn"> 
                         <form class="myForm text-center" method ="post">
-                            <header>Neues Konto erstellen</header>
+                            <header>Login zum Konto</header>
                             <div class="form-group">
                                 <i class="fas fa-user"></i>
-                                <input class="myInput" type="text" placeholder="Username" id="username" required> 
+                                <input class="myInput" type="text" placeholder="Username" id="username" name="username" required> 
                             </div>
 
                             <div class="form-group">
                                 <i class="fas fa-lock"></i>
-                                <input class="myInput" type="password" id="password" placeholder="Password" required> 
+                                <input class="myInput" type="password" id="password" placeholder="Password" name="password" required> 
                             </div>
 
-                            <div class="form-group">
-                                <label>
-                                    <input id="check_1" name="check_1"  type="checkbox" required><small> Ich habe die Allgemeinen Geschäftsbedingungen gelesen und stimme ihnen zu.</small></input> 
-                                    <div class="invalid-feedback">Das Kästchen muss angekreuzt werden.</div>
-                                </label>
-                            </div>
+                            
 
                             <input type="submit" class="butt" value="LOGIN">
                             

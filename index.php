@@ -25,7 +25,7 @@
                 
                 <div class="col-md-6">
                     <div class="myRightCtn">
-                        <div class="box"><header>Hello, <?php echo $user_data['user_name']; ?></header>
+                        <div class="box"><header>Hello, <?php echo $user_data['username']; ?></header>
                             
                             <p>Your are the next Geek engineer !</p>
                             <p><span>&#129299;</span></p>

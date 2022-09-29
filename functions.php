@@ -2,10 +2,10 @@
 
  function check_login($con){
 
-    if(isset($_SESSION['user_name'])){
+    if(isset($_SESSION['username'])){
 
-      $user_name = $_SESSION['user_name'];
-      $query = "select * from users where username = '$user_name' limit 1";
+      $username = $_SESSION['username'];
+      $query = "select * from users where username = '$username' limit 1";
 
       $result = mysqli_query($con,$query);
       if($result && mysqli_num_rows($result) > 0 ){
@@ -19,15 +19,7 @@
 
     // redirect to the login page
 
-    header("Location : login.php");
+    header("Location: login.php");
     die;
-
  }
-
-
-   
-
-   
- 
-
 ?>

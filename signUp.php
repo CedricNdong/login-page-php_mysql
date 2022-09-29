@@ -7,17 +7,20 @@
     if ( $_SERVER['REQUEST_METHOD'] == "POST") {
         
         // to post login daten
-        $user_name = $_POST['username'];
+        $username = $_POST['username'];
         $name = $_POST['name'];
+        $email = $_POST['email'];
         $password = $_POST['password'];
 
-        if (!empty(user_name) && !empty(name) && !empty(password) && !is_numeric($name)) {
+        if (!empty($username) && !empty($name) && !empty($email) && !empty($password) && !is_numeric($name)) {
           
             //save to the database
-            $query = "insert into users (user_name,name,password) values ('$user_name','$name','$password')";
+            $query = "insert into users (username,name,email,password) values ('$username','$name','$email','$password')";
 
-            mysqli_query($con,$query);
-            header("Location : login.php");
+            if ( mysqli_query($con,$query)) {
+                echo "New record created successfully";
+              }
+            header("Location: login.php");
             die;
 
 
@@ -27,13 +30,7 @@
 
         }
         
-    } else {
-   
     }
-    
-
-
-
 ?>
 
 
@@ -56,22 +53,22 @@
                             <header>Neues Konto erstellen</header>
                             <div class="form-group">
                                 <i class="fas fa-user"></i>
-                                <input class="myInput" type="text" placeholder="Username" id="username" required> 
+                                <input class="myInput" type="text" placeholder="Username" id="username" name="username" required> 
                             </div>
 
                             <div class="form-group">
                                 <i class="fas fa-user"></i>
-                                <input class="myInput" type="text" placeholder="Name" id="name" required> 
+                                <input class="myInput" type="text" placeholder="Name" id="name" name="name" required> 
                             </div>
 
                             <div class="form-group">
                                 <i class="fas fa-envelope"></i>
-                                <input class="myInput" placeholder="Email" type="text" id="email" required> 
+                                <input class="myInput" placeholder="Email" type="text" id="email" name="email" required> 
                             </div>
 
                             <div class="form-group">
                                 <i class="fas fa-lock"></i>
-                                <input class="myInput" type="password" id="password" placeholder="Password" required> 
+                                <input class="myInput" type="password" id="password" placeholder="Password" name="password" required> 
                             </div>
 
                             <div class="form-group">
