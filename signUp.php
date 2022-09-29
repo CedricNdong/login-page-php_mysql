@@ -1,12 +1,39 @@
 <?php
  session_start();
 
+    include("connection.php");
+    include("functions.php");
 
+    if ( $_SERVER['REQUEST_METHOD'] == "POST") {
+        
+        // to post login daten
+        $user_name = $_POST['username'];
+        $name = $_POST['name'];
+        $password = $_POST['password'];
+
+        if (!empty(user_name) && !empty(name) && !empty(password) && !is_numeric($name)) {
+          
+            //save to the database
+            $query = "insert into users (user_name,name,password) values ('$user_name','$name','$password')";
+
+            mysqli_query($con,$query);
+            header("Location : login.php");
+            die;
+
+
+        } else {
+
+            echo "Geben Sie bitte valide Informationen ein !";
+
+        }
+        
+    } else {
    
+    }
+    
 
 
-    include(connection.php);
-    include(functions.php);
+
 ?>
 
 
