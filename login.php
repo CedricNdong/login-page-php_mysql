@@ -16,19 +16,15 @@
             $query = "select * from users where username = '$username' limit 1";
             $result = mysqli_query($con,$query);
 
-            echo " 'hors du result'  $query";
+     
             
             if($result){
 
-                echo " in result";
+              
                 if($result && mysqli_num_rows($result) > 0 ){
 
                     $user_data = mysqli_fetch_assoc($result);
 
-                    
-                    echo " in password";
-
-                   
 
                     if($user_data['password']=== $password){
 
